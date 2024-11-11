@@ -2,8 +2,10 @@
 #include "Prerequisites.h"
 #include "Enity.h"
 #include "ShapeFactory.h"
+#include "Transform.h"
 
-class Actor : public Enity
+class 
+Actor : public Enity
 {
 public:
 
@@ -29,20 +31,26 @@ public:
      * @param deltaTime Tiempo transcurrido desde la última actualización (en segundos).
      * Actualiza la lógica de los componentes del actor.
      */
-    void update(float deltaTime) override;
+    void 
+    update(float deltaTime) override;
 
     /**
      * @brief Renderiza el actor en la ventana proporcionada.
      * @param window Ventana en la que se debe renderizar el actor.
      */
-    void render(Window& window) override;
+    void 
+    render(Window& window) override;
 
     /**
      * @brief Destruye el actor y libera los recursos asociados.
      * Elimina todos los componentes del actor y limpia la memoria.
      */
-    void destroy();
+    void 
+    destroy();
 
+    std::string getName() {
+        return m_name;
+    }
     /**
      * @brief Obtiene un componente específico del actor.
      * @tparam T Tipo de componente a obtener.

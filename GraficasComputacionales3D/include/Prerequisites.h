@@ -1,11 +1,14 @@
 #pragma once
 
+
 // Librerías estándar
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <vector>
 #include <thread>
+#include <map>
+#include <vector>
+#include <fstream>
 
 // Librerías de terceros
 #include <SFML/Graphics.hpp>
@@ -14,6 +17,10 @@
 #include "Memory/TStaticPtr.h"
 #include "Memory/TUniquePtr.h"
 
+//Imgui
+#include <imgui.h>
+#include <imgui-SFML.h>
+
 // Enumeración para tipos de forma
 enum ShapeType
 {
@@ -21,6 +28,13 @@ enum ShapeType
     CIRCLE = 1,
     RECTANGLE = 2,
     TRIANGLE = 3
+};
+
+enum
+    ConsolErrorType {
+    INFO = 0,
+    WARNING = 1,
+    ERROR = 2
 };
 
 // Macro para liberar punteros de forma segura

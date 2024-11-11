@@ -79,11 +79,15 @@ public:
      * @param deltaTime Tiempo transcurrido desde el último frame.
      * @param range Distancia mínima a la que se considera que ha llegado al objetivo.
      */
-    void Seek(const sf::Vector2f& targetPosition, float speed, float deltaTime, float range);
+    //void Seek(const sf::Vector2f& targetPosition, float speed, float deltaTime, float range);
 
-public:
-    sf::Shape* m_shape;  ///< Puntero a la forma actual.
+    void
+    setRotation(float angle);
+
+    void
+    setScale(const sf::Vector2f& scl);
 
 private:
-    ShapeType m_shapeType;  ///< Tipo de la forma.
+    sf::Shape* m_shape;
+    ShapeType m_shapeType;
 };

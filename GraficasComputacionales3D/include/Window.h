@@ -1,54 +1,111 @@
 #pragma once
 #include "Prerequisites.h"
 
-class Window
-{
+/**
+ * @class Window
+ * @brief Clase que gestiona una ventana de renderizado y la integración con ImGui.
+ */
+class 
+Window {
 public:
-	Window() = default;
-	Window(int width, int height, const std::string& title);
-	~Window();
+    /**
+     * @brief Constructor por defecto de la clase Window.
+     */
+    Window() = default;
 
+    /**
+     * @brief Constructor que inicializa la ventana con dimensiones y título especificados.
+     * @param width Ancho de la ventana.
+     * @param height Alto de la ventana.
+     * @param title Título de la ventana.
+     */
+    Window(int width, int height, const std::string& title);
 
- void 
-handleEvents();
+    /**
+     * @brief Destructor de la clase Window. Libera recursos de ImGui y cierra la ventana.
+     */
+    ~Window();
 
- void 
-clear();
+    /**
+     * @brief Maneja los eventos de la ventana, como el cierre y redimensionamiento.
+     */
+    void 
+    handleEvents();
 
- void 
-display();
+    /**
+     * @brief Limpia el contenido actual de la ventana y el RenderTexture.
+     */
+    void 
+    clear();
 
- bool 
-isOpen() const;
+    /**
+     * @brief Muestra el contenido renderizado en la ventana.
+     */
+    void 
+    display();
 
- void 
-draw(const sf::Drawable& drawable);
+    /**
+     * @brief Verifica si la ventana está abierta.
+     * @return true si la ventana está abierta, false en caso contrario.
+     */
+    bool 
+    isOpen() const;
 
- sf::RenderWindow*
-	 getWindow();
+    /**
+     * @brief Dibuja un objeto en el RenderTexture en lugar de directamente en la ventana.
+     * @param drawable Objeto dibujable a renderizar.
+     */
+    void 
+    draw(const sf::Drawable& drawable);
 
-//Funcion de inicializacion 
- void 
-init();
+    /**
+     * @brief Obtiene un puntero a la ventana de renderizado.
+     * @return Puntero a sf::RenderWindow.
+     */
+    sf::RenderWindow* getWindow();
 
+    /**
+     * @brief Actualiza la textura después de renderizar en ella.
+     */
+    void 
+    renderToTexture();
 
-//Funcion que se actualiza por frame
-void 
-update();
+    /**
+     * @brief Muestra la textura renderizada en una ventana ImGui.
+     */
+    void 
+    showInImGui();
 
+    /**
+     * @brief Inicializa recursos y configura la ventana.
+     */
+    void 
+    init();
 
-//Funcion de renderizado
-void 
-render();
+    /**
+     * @brief Actualiza la GUI de ImGui y el deltaTime de la ventana.
+     */
+    void 
+    update();
 
+    /**
+     * @brief Renderiza la GUI de ImGui en la ventana.
+     */
+    void 
+    render();
 
-
-void 
-destroy();
-
-
+    /**
+     * @brief Libera los recursos y cierra la ventana.
+     */
+    void 
+    destroy();
 
 private:
-	sf::RenderWindow* m_window;
-};
+    sf::RenderWindow* m_window; ///< Puntero a la ventana de SFML.
+    sf::View m_view;            ///< Vista de la ventana para manejar el redimensionamiento.
 
+public:
+    sf::RenderTexture m_renderTexture; ///< Textura de renderizado de SFML.
+    sf::Time deltaTime;                ///< Delta time para el cálculo de tiempo entre frames.
+    sf::Clock clock;                   ///< Reloj para calcular el delta time.
+};

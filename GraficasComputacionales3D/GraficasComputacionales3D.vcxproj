@@ -94,7 +94,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\imgui-sfml-2.6.x;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
@@ -102,7 +102,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\lib;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,7 +113,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\imgui-sfml-2.6.x;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\lib;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,7 +131,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\imgui-sfml-2.6.x;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
@@ -139,7 +139,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\lib;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +150,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\include;C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\imgui-sfml-2.6.x;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -159,27 +159,50 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dalez\OneDrive\Documentos\GitHub\GraficasComputacionales3d\ThirdParties\SFML-2.6.1\lib;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui-SFML.cpp" />
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui.cpp" />
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_demo.cpp" />
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_draw.cpp" />
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_tables.cpp" />
+    <ClCompile Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_widgets.cpp" />
     <ClCompile Include="src\Actor.cpp" />
     <ClCompile Include="src\BaseApp.cpp" />
+    <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Rasterizer.cpp" />
     <ClCompile Include="src\ShapeFactory.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imconfig-SFML.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imconfig.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imgui-SFML.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imgui-SFML_export.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imgui.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imgui_internal.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imstb_rectpack.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imstb_textedit.h" />
+    <ClInclude Include="..\ThirdParties\imgui-sfml-2.6.x\imstb_truetype.h" />
     <ClInclude Include="include\Actor.h" />
     <ClInclude Include="include\BaseApp.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Enity.h" />
+    <ClInclude Include="include\GUI.h" />
     <ClInclude Include="include\Memory\TSharedPointer.h" />
     <ClInclude Include="include\Memory\TStaticPtr.h" />
     <ClInclude Include="include\Memory\TUniquePtr.h" />
     <ClInclude Include="include\Memory\TWeakPointer.h" />
     <ClInclude Include="include\Prerequisites.h" />
+    <ClInclude Include="include\Rasterizer.h" />
+    <ClInclude Include="include\Services\NotificationService.h" />
     <ClInclude Include="include\ShapeFactory.h" />
+    <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\Transform.h" />
     <ClInclude Include="include\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
