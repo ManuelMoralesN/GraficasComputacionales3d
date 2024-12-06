@@ -33,11 +33,11 @@ public:
 		destroy();
 
 	void
-		Seek(const sf::Vector2f& targetPosition,
+		Seek(const Vector2& targetPosition,
 			float speed,
 			float deltaTime,
 			float range) {
-		sf::Vector2f direction = targetPosition - position;
+		Vector2 direction = targetPosition - position;
 		float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
 		if (length > range) {
@@ -45,37 +45,43 @@ public:
 			position += direction * speed * deltaTime;
 		}
 	}
+	void
+		setTransform(const Vector2& _position, const Vector2& _rotation, const Vector2& _scale) {
+		position = _position;
+		rotation = _rotation;
+		scale = _scale;
+	}
 
 	void
-		setPosition(const sf::Vector2f& _position) {
+		setPosition(const Vector2& _position) {
 		position = _position;
 	}
 
 	void
-		setRotation(const sf::Vector2f& _rotation) {
+		setRotation(const Vector2& _rotation) {
 		rotation = _rotation;
 	}
 
 	void
-		setScale(const sf::Vector2f& _scale) {
+		setScale(const Vector2& _scale) {
 		scale = _scale;
 	}
 	
-	sf::Vector2f& getPosition() {
+	Vector2& getPosition() {
 		return position;
 	}
 
-	sf::Vector2f 
+	Vector2&
 	getRotation() {
 		return rotation;
 	}
 
-	sf::Vector2f& getScale() {
+	Vector2& getScale() {
 		return scale;
 	}
 
 private:
-	sf::Vector2f position;  // Posición del objeto
-	sf::Vector2f rotation;  // Rotación del objeto
-	sf::Vector2f scale;     // Escala del objeto
+	Vector2 position;  // Posición del objeto
+	Vector2 rotation;  // Rotación del objeto
+	Vector2 scale;     // Escala del objeto
 };

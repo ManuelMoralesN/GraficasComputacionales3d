@@ -2,6 +2,7 @@
 
 #include "BaseApp.h"
 #include "Services\NotificationService.h"
+#include "Services/ResourceManager.h"
 
 /**
  * @brief Ejecuta el ciclo principal de la aplicación.
@@ -52,6 +53,11 @@ BaseApp::run()
 bool 
 BaseApp::initialize()
 {
+    //Obtener Managers
+    NotificationService& notifier = NotificationService::getInstance();
+    ResourceManager& resourceMan = ResourceManager::getInstance();
+
+    //Inicializa la ventana
     m_window = new Window(1920, 1080, "Graficas Computacionales 3D");
     if (!m_window)
     {
@@ -66,44 +72,62 @@ BaseApp::initialize()
         //Circle->getComponent<ShapeFactory>()->setFillColor(sf::Color::Blue);
 
         // Establecer posición, rotación y escala desde Transform
-        Track->getComponent<Transform>()->setPosition(sf::Vector2f(0.0f, 0.0f));
-        Track->getComponent<Transform>()->setRotation(sf::Vector2f(0.0f, 0.0f));
-        Track->getComponent<Transform>()->setScale(sf::Vector2f(8.0f, 12.0f));
+        Track->getComponent<Transform>()->setTransform(Vector2(0.0f, 0.0f), 
+            Vector2(0.0f, 0.0f), 
+            Vector2(11.0f, 12.0f));
+    
+        //if (!texture.loadFromFile("Circuit.png")) {
+        //    std::cout << "Error de carga de textura" << std::endl;
+        //    return -1; // Manejar error de carga
+        //}
+        //Track->getComponent<ShapeFactory>()->getShape()->setTexture(&texture);
 
-        if (!texture.loadFromFile("Circuit.png")) {
-            std::cout << "Error de carga de textura" << std::endl;
-            return -1; // Manejar error de carga
+        //Obtener el resource Manager
+        ResourceManager& resourceMan = ResourceManager::getInstance();
+
+        //Cargar la textura para el actor Track
+        if (!resourceMan.loadTexture("Circuit", "png")) {
+            
         }
-        Track->getComponent<ShapeFactory>()->getShape()->setTexture(&texture);
+
+        //Obtenemos la textura carga
+        EngineUtilities::TSharedPointer<Texture> trackTexture = resourceMan.getTexture("Circuit");
+        if (trackTexture) {
+            Track->getComponent<ShapeFactory>()->getShape()->setTexture(&trackTexture->getTexture());
+        }
+        
+        //Almacenamos el recurso si no es nulo
+        m_actors.push_back(Track);
     }
-    m_actors.push_back(Track);
+
 
     // Inicializar el actor Circle
     Circle = EngineUtilities::MakeShared<Actor>("Circle");
     if (!Circle.isNull()) {
         Circle->getComponent<ShapeFactory>()->createShape(ShapeType::CIRCLE);
 
-        Circle->getComponent<Transform>()->setPosition(sf::Vector2f(200.0f, 200.0f));
-        Circle->getComponent<Transform>()->setScale(sf::Vector2f(1.0f, 1.0f));
-        Circle->getComponent<Transform>()->setRotation(sf::Vector2f(200.0f, 200.0f));
+        Circle->getComponent<Transform>()->setTransform(Vector2(200.0f, 200.0f), 
+            Vector2(1.0f, 1.0f), 
+            Vector2(200.0f, 200.0f));
 
         if (!Yoshi.loadFromFile("Yoshi.png")) {
             std::cout << "Error de carga de textura" << std::endl;
             return -1; // Manejar error de carga
         }
         Circle->getComponent<ShapeFactory>()->getShape()->setTexture(&Yoshi);
+        
+        m_actors.push_back(Circle);
     }
-    m_actors.push_back(Circle);
     // Definir los waypoints para el movimiento del círculo
     waypoints = {
-    sf::Vector2f(420.0f, 40.0f),  // Primera curva en el norte
-    sf::Vector2f(600.0f, 150.0f),  // Esquina noreste
-    sf::Vector2f(780.0f, 300.0f),  // Esquina este
-    sf::Vector2f(600.0f, 500.0f),  // Curva sureste
-    sf::Vector2f(250.0f, 500.0f),  // Curva sur
-    sf::Vector2f(100.0f, 450.0f),  // Curva suroeste
-    sf::Vector2f(100.0f, 250.0f),  // Esquina noroeste
-    sf::Vector2f(220.0f, 90.0f)   // De vuelta al inicio
+    Vector2(420.0f, 40.0f),  // Primera curva en el norte
+    Vector2(600.0f, 150.0f),  // Esquina noreste
+    Vector2(780.0f, 300.0f),  // Esquina este
+    Vector2(600.0f, 500.0f),  // Curva sureste
+    Vector2(250.0f, 500.0f),  // Curva sur
+    Vector2(100.0f, 450.0f),  // Curva suroeste
+    Vector2(100.0f, 250.0f),  // Esquina noroeste
+    Vector2(220.0f, 90.0f)   // De vuelta al inicio
     };
 
     currentWaypointIndex = 0; // Iniciar en el primer waypoint
@@ -112,8 +136,9 @@ BaseApp::initialize()
     Triangle = EngineUtilities::MakeShared<Actor>("Triangle");
     if (!Triangle.isNull()) {
         Triangle->getComponent<ShapeFactory>()->createShape(ShapeType::TRIANGLE);
+
+        m_actors.push_back(Triangle);
     }
-    m_actors.push_back(Triangle);
     return true;
 }
 
@@ -124,10 +149,6 @@ void
 BaseApp::update()
 {
     m_window->update();
-
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(*m_window->getWindow());
-    sf::Vector2f mousePosF(static_cast<float>(mousePosition.x), 
-        static_cast<float>(mousePosition.y));
     //if (!Track.isNull()) {
     //    Track->update(m_window->deltaTime.asSeconds());
     //}
@@ -150,6 +171,7 @@ BaseApp::update()
  */
 void BaseApp::render()
 {
+    //Obtener Managers
     NotificationService& notifier = NotificationService::getInstance();
 
 
@@ -208,13 +230,13 @@ BaseApp::updateMovement(float deltaTime, EngineUtilities::TSharedPointer<Actor> 
     }
 
     // Obtener el waypoint actual
-    sf::Vector2f targetPos = waypoints[currentWaypointIndex];
+    Vector2 targetPos = waypoints[currentWaypointIndex];
 
     // Mover el círculo hacia el waypoint actual
     transform->Seek(targetPos, 200.0f, deltaTime, 10.0f);
 
     // Obtener la posición actual del círculo
-    sf::Vector2f currentPos = circle->getComponent<Transform>()->getPosition();
+    Vector2 currentPos = circle->getComponent<Transform>()->getPosition();
 
     // Calcular la distancia al waypoint actual
     float distance = std::sqrt(std::pow(targetPos.x - currentPos.x, 2) + std::pow(targetPos.y - currentPos.y, 2));

@@ -58,6 +58,12 @@ public:
     void 
     console(std::map<ConsolErrorType, std::vector<std::string>>& programMessages);
 
+    void
+        vec3Control(const std::string& label,
+            float* values,
+            float resetValues = 0.0f,
+            float columnWidth = 100.0f);
+
     /**
      * @brief Muestra y permite editar propiedades de un actor seleccionado.
      * @param selectedActor Puntero compartido al actor seleccionado.

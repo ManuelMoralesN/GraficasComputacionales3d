@@ -1,6 +1,7 @@
 #include "GUI.h"
 #include "Window.h"
 #include "Actor.h"
+#include "imgui_internal.h"
 
 /**
  * @brief Inicializa la interfaz gráfica (GUI), configurando su estilo visual.
@@ -138,6 +139,56 @@ GUI::console(std::map<ConsolErrorType, std::vector<std::string>>& programMessage
     ImGui::End();
 }
 
+void 
+GUI::vec3Control(const std::string& label, float* values, float resetValue, float columnWidth) {
+    ImGuiIO& io = ImGui::GetIO();
+    auto boldFont = io.Fonts->Fonts[0];
+
+    ImGui::PushID(label.c_str());
+
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, columnWidth);
+    ImGui::Text(label.c_str());
+    ImGui::NextColumn();
+
+    ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
+
+    float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+    ImVec2 buttonSize = { lineHeight + 3.0f, lineHeight };
+
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.8f, 0.1f, 0.15f, 1.0f });
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.9f, 0.2f, 0.2f, 1.0f });
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.8f, 0.1f, 0.15f, 1.0f });
+    ImGui::PushFont(boldFont);
+    if (ImGui::Button("X", buttonSize)) values[0] = resetValue;
+    ImGui::PopFont();
+    ImGui::PopStyleColor(3);
+
+    ImGui::SameLine();
+    ImGui::DragFloat("##X", &values[0], 0.1f, 0.0f, 0.0f, "%.2f");
+    ImGui::PopItemWidth();
+    ImGui::SameLine();
+
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.2f, 0.7f, 0.2f, 1.0f });
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.3f, 0.8f, 0.3f, 1.0f });
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.2f, 0.7f, 0.2f, 1.0f });
+    ImGui::PushFont(boldFont);
+    if (ImGui::Button("Y", buttonSize)) values[1] = resetValue;
+    ImGui::PopFont();
+    ImGui::PopStyleColor(3);
+
+    ImGui::SameLine();
+    ImGui::DragFloat("##Y", &values[1], 0.1f, 0.0f, 0.0f, "%.2f");
+    ImGui::PopItemWidth();
+    ImGui::SameLine();
+
+    ImGui::PopStyleVar();
+    ImGui::Columns(1);
+
+    ImGui::PopID();
+}
+
 /**
  * @brief Muestra y permite editar propiedades de un actor seleccionado, como posición y escala.
  * @param selectedActor Actor seleccionado para inspección.
@@ -153,13 +204,18 @@ GUI::inspector(EngineUtilities::TSharedPointer<Actor> selectedActor) {
 
     auto transform = selectedActor->getComponent<Transform>();
     if (!transform.isNull()) {
-        sf::Vector2f position = transform->getPosition();
-        sf::Vector2f scale = transform->getScale();
-        sf::Vector2f rotation = transform->getRotation();
+        Vector2 position = transform->getPosition();
+        Vector2 scale = transform->getScale();
+        Vector2 rotation = transform->getRotation();
 
         ImGui::Text("Position");
         if (ImGui::DragFloat2("##Position", &position.x, 0.1f)) {
             transform->setPosition(position);
+        }
+
+        ImGui::Text("Rotation"); 
+        if (ImGui::DragFloat2("##Rotation", &rotation.x, 0.1f)) {
+            transform->setRotation(rotation);
         }
 
         ImGui::Text("Scale");

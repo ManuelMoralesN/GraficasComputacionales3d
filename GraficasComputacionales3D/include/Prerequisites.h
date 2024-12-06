@@ -1,5 +1,10 @@
 #pragma once
-
+//Librerias nuestras
+#include "Math/Quaternion.h"
+#include "Math/Utilities.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
+#include "Math/Vector4.h"
 
 // Librerías estándar
 #include <iostream>
@@ -9,6 +14,7 @@
 #include <map>
 #include <vector>
 #include <fstream>
+#include "unordered_map"
 
 // Librerías de terceros
 #include <SFML/Graphics.hpp>

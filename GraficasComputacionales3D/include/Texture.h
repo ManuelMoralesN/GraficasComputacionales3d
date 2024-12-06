@@ -50,6 +50,13 @@ public:
         return m_texture;
     }
 
+    void update(float deltaTime) override {
+
+    }
+    void render(Window window) override {
+
+    }
+
 private:
     std::string m_textureName;  ///< Nombre del archivo de textura.
     std::string m_extension;    ///< Extensión del archivo de textura.

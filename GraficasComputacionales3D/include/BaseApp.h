@@ -49,7 +49,7 @@ private:
     std::vector< EngineUtilities::TSharedPointer<Actor>> m_actors;
 
     // Variables para waypoints
-    std::vector<sf::Vector2f> waypoints;  // Puntos de referencia
+    std::vector<Vector2> waypoints;  // Puntos de referencia
     size_t currentWaypointIndex = 0;      // Índice del waypoint actual
 
     GUI m_GUI;

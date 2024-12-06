@@ -64,7 +64,7 @@ public:
      * @brief Establece la posición de la forma.
      * @param position Vector con las coordenadas.
      */
-    void setPosition(const sf::Vector2f& position);
+    void setPosition(const Vector2& position);
 
     /**
      * @brief Establece el color de relleno de la forma.
@@ -85,7 +85,7 @@ public:
     setRotation(float angle);
 
     void
-    setScale(const sf::Vector2f& scl);
+    setScale(const Vector2& scl);
 
 private:
     sf::Shape* m_shape;

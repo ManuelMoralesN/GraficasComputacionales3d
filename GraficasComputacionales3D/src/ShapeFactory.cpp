@@ -1,5 +1,6 @@
 #include "ShapeFactory.h"
 
+
 /**
  * @brief Crea una forma específica basada en el tipo de forma proporcionado.
  * @param shapeType Tipo de la forma a crear (CIRCLE, RECTANGLE, TRIANGLE, EMPTY).
@@ -12,13 +13,13 @@ ShapeFactory::createShape(ShapeType shapeType) {
     case EMPTY:
         return nullptr;
     case CIRCLE: {
-        sf::CircleShape* circle = new sf::CircleShape(10.0f);
+        sf::CircleShape* circle = new sf::CircleShape(0.05);
         circle->setFillColor(sf::Color::White);
         m_shape = circle;
         return circle;
     }
     case RECTANGLE: {
-        sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(100.0f, 50.0f));
+        sf::RectangleShape* rectangle = new sf::RectangleShape (sf::Vector2f(100.0f, 50.0f));
         rectangle->setFillColor(sf::Color::White);
         m_shape = rectangle;
         return rectangle;
@@ -51,9 +52,9 @@ ShapeFactory::setPosition(float x, float y) {
  * @param position Vector 2D de posición.
  */
 void 
-ShapeFactory::setPosition(const sf::Vector2f& position) {
+ShapeFactory::setPosition(const Vector2& position) {
     if (m_shape) {
-        m_shape->setPosition(position);
+        m_shape->setPosition(position.x, position.y);
     }
 }
 
@@ -73,9 +74,9 @@ ShapeFactory::setRotation(float angle) {
  * @param scl Vector 2D que representa la escala en los ejes X e Y.
  */
 void 
-ShapeFactory::setScale(const sf::Vector2f& scl) {
+ShapeFactory::setScale(const Vector2& scl) {
     if (m_shape) {
-        m_shape->setScale(scl);
+        m_shape->setScale(scl.x, scl.y);
     }
 }
 
